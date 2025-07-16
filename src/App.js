@@ -57,14 +57,36 @@ function App() {
     setPlayLists([...myPlaylists, newPlaylist]);
     setMyTracks([]);
   }
- 
+  const handleDeletPlaylist = (nameToDelete) => {
+    const updatedPlaylist = myPlaylists.filter((Playlist) => Playlist.name !== nameToDelete);
+    setPlayLists(updatedPlaylist);
+
+  }
+  const handleRemoveSongFromSavedPlaylist = (playlistName, trackToRemove) => {
+    const updatedPlaylists = myPlaylists.map((playlist) => {
+      if (playlist.name === playlistName) {
+        // On est sur la bonne playlist
+        const updatedSongs = playlist.songs.filter(
+          (song) => song.title !== trackToRemove.title
+        );
+        return { ...playlist, songs: updatedSongs };
+      }
+
+      // Sinon, on ne change pas cette playlist
+      return playlist;
+    });
+
+    setPlayLists(updatedPlaylists);
+  };
+
+
   return (
     <div className="App">
       <h1>Jammming</h1>
       <SearchBar handleSubmit={handleSearchSubmit} />
       <h2>Results</h2>
       <SearchResults handleAddNewTrack={handleAddNewTrack} tracks={filtredTracks} />
-      <PlaylistCollection handleAddNewPlaylist={handleAddNewPlaylist} myPlaylists={myPlaylists} mytracks={myTracks} />
+      <PlaylistCollection handleAddNewPlaylist={handleAddNewPlaylist} handleDeletPlaylist={handleDeletPlaylist} handleRemoveSongFromSavedPlaylist={handleRemoveSongFromSavedPlaylist} myPlaylists={myPlaylists} mytracks={myTracks} handleRemoveNewTrack={handleRemoveNewTrack} />
     </div>
   );
 }
