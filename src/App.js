@@ -63,21 +63,17 @@ function App() {
 
   }
   const handleRemoveSongFromSavedPlaylist = (playlistName, trackToRemove) => {
-    const updatedPlaylists = myPlaylists.map((playlist) => {
-      if (playlist.name === playlistName) {
-        // On est sur la bonne playlist
-        const updatedSongs = playlist.songs.filter(
-          (song) => song.title !== trackToRemove.title
-        );
-        return { ...playlist, songs: updatedSongs };
+    const updatedPlaylistsong = myPlaylists.map((Playlist) => {
+      if (Playlist.name === playlistName) {
+
+        const updatedsongs = Playlist.songs.filter((song) => song.title !== trackToRemove.title);
+        return ({ ...Playlist, songs: updatedsongs });
       }
-
-      // Sinon, on ne change pas cette playlist
-      return playlist;
+      return Playlist;
     });
-
-    setPlayLists(updatedPlaylists);
+    setPlayLists(updatedPlaylistsong);
   };
+    
 
 
   return (

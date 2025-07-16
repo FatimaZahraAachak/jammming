@@ -1,0 +1,17 @@
+.Playlist{
+background-color: #ffeaf4;
+padding: 20px;
+margin: 30px auto;
+border-radius: 16px;
+max-width: 600px;
+box-shadow: 0 6px 18px rgba(255, 182, 193, 0.25);
+border: 2px solid #ffcce0;
+}
+
+.Playlist-title{
+
+}
+
+.track-container{
+
+}
