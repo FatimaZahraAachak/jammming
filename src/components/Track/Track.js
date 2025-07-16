@@ -1,9 +1,11 @@
 function Track({ track, onActionClick, buttonLabel }) {
     return (
-        <div>
-            <h2>{track.title}</h2>
-            <p>{track.singer}</p>
-            <button onClick={() => onActionClick(track)}>{buttonLabel}</button>
+        <div className="track-card">
+            <div className="track-info">
+                <h2 className="track-title">{track.title}</h2>
+                <p className="track-singer">{track.singer}</p>
+                <button className="track-button" onClick={() => onActionClick(track)}>{buttonLabel}</button>
+            </div>
         </div>
     );
 }
