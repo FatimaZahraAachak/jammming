@@ -5,32 +5,19 @@ import SearchResults from './components/SearchResults/SearchResults.js';
 import Playlist from './components/Playlist/Playlist.js';
 import PlaylistCollection from './components/PlaylistCollection/PlaylistCollection.js';
 
-const sampleTracks = [
-  { title: "Blinding Lights", singer: "The Weeknd" },
-  { title: "Levitating", singer: "Dua Lipa" },
-  { title: "Shape of You", singer: "Ed Sheeran" },
-  { title: "Good 4 U", singer: "Olivia Rodrigo" },
-  { title: "Stay", singer: "The Kid LAROI & Justin Bieber" },
-  { title: "Easy On Me", singer: "Adele" },
-  { title: "Peaches", singer: "Justin Bieber" },
-  { title: "As It Was", singer: "Harry Styles" },
-  { title: "Flowers", singer: "Miley Cyrus" },
-  { title: "Bad Habit", singer: "Steve Lacy" }
+export const sampleTracks = [
+  { id: 1, title: "Blinding Lights", singer: "The Weeknd" },
+  { id: 2, title: "Levitating", singer: "Dua Lipa" },
+  { id: 3, title: "Shape of You", singer: "Ed Sheeran" },
+  { id: 4, title: "Good 4 U", singer: "Olivia Rodrigo" },
+  { id: 5, title: "Stay", singer: "The Kid LAROI & Justin Bieber" },
+  { id: 6, title: "Easy On Me", singer: "Adele" },
+  { id: 7, title: "Peaches", singer: "Justin Bieber" },
+  { id: 8, title: "As It Was", singer: "Harry Styles" },
+  { id: 9, title: "Flowers", singer: "Miley Cyrus" },
+  { id: 10, title: "Bad Habit", singer: "Steve Lacy" }
 ];
 
-const samplePlayLists = [
-  {
-    name: 'love',
-    songs: [{ title: "Blinding Lights", singer: "The Weeknd" },
-    { title: "Levitating", singer: "Dua Lipa" },
-    { title: "Shape of You", singer: "Ed Sheeran" }]
-  },
-  {
-    name: 'friends',
-    songs: [{ title: "Flowers", singer: "Miley Cyrus" },
-    { title: "Bad Habit", singer: "Steve Lacy" }]
-  }
-]
 
 function App() {
   const [filtredTracks, setFiltredTracks] = useState([]);
@@ -42,19 +29,20 @@ function App() {
     setFiltredTracks(results);
   };
 
-  const handleAddNewTrack = (t) => {
-    const hasTrack = myTracks.some((e) => e.title === t.title);
+  const handleAddNewTrack = (trackId) => {
+    const hasTrack = myTracks.some((e) => e === trackId);
     if (hasTrack) {
       return;
     }
-    setMyTracks([...myTracks, t]);
+    setMyTracks([...myTracks, trackId]);
   }
-  const handleRemoveNewTrack = (mytrack) => {
-    const newplaylist = myTracks.filter(item => item.title !== mytrack.title);
+  const handleRemoveNewTrack = (trackId) => {
+    const newplaylist = myTracks.filter(item => item !== trackId);
     setMyTracks(newplaylist);
   }
   const handleAddNewPlaylist = (newPlaylist) => {
     setPlayLists([...myPlaylists, newPlaylist]);
+    // clear the state of tracks after submitting the new playlist 
     setMyTracks([]);
   }
   const handleDeletPlaylist = (nameToDelete) => {
@@ -73,16 +61,23 @@ function App() {
     });
     setPlayLists(updatedPlaylistsong);
   };
-    
+
 
 
   return (
     <div className="App">
       <h1>Jammming</h1>
       <SearchBar handleSubmit={handleSearchSubmit} />
-      <h2>Results</h2>
-      <SearchResults handleAddNewTrack={handleAddNewTrack} tracks={filtredTracks} />
-      <PlaylistCollection handleAddNewPlaylist={handleAddNewPlaylist} handleDeletPlaylist={handleDeletPlaylist} handleRemoveSongFromSavedPlaylist={handleRemoveSongFromSavedPlaylist} myPlaylists={myPlaylists} mytracks={myTracks} handleRemoveNewTrack={handleRemoveNewTrack} />
+      <div className="main-content">
+        <div className="results-section">
+          <h2> Search Results</h2>
+          <SearchResults handleAddNewTrack={handleAddNewTrack} tracks={filtredTracks} />
+        </div>
+        <div className='PlaylistCollection'>
+          <h2 className="collection-title">Your Playlist Collection</h2>
+          <PlaylistCollection handleAddNewPlaylist={handleAddNewPlaylist} handleDeletPlaylist={handleDeletPlaylist} handleRemoveSongFromSavedPlaylist={handleRemoveSongFromSavedPlaylist} myPlaylists={myPlaylists} mytracks={myTracks} handleRemoveNewTrack={handleRemoveNewTrack} />
+        </div>
+      </div>
     </div>
   );
 }

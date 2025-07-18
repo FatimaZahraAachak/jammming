@@ -1,21 +1,10 @@
-.Playlist {
-    background-color: #ffeaf4;
+.playlist {
     padding: 20px;
     margin: 30px auto;
-    border-radius: 16px;
     max-width: 600px;
-    box-shadow: 0 6px 18px rgba(255, 182, 193, 0.25);
-    border: 2px solid #ffcce0;
+    
 }
 
-.Playlist-title {
-    text-align: center;
-    font-size: 30px;
-    font-weight: 600;
-    margin-bottom: 28px;
-    color: #d63384;
-    font-family: 'Segoe UI', sans-serif;
-}
 
 .track-container {
     margin-bottom: 20px;

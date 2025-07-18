@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Playlist from "../Playlist/Playlist";
 import Track from "../Track/Track";
+import './PlaylistCollection.css'
+import { sampleTracks } from '../../App.js';
+
 function PlaylistCollection({ handleAddNewPlaylist, handleRemoveNewTrack, myPlaylists, mytracks, handleDeletPlaylist, handleRemoveSongFromSavedPlaylist }) {
     const [playlistName, setPlaylistName] = useState("");
     const handleChange = (event) => {
@@ -16,28 +19,37 @@ function PlaylistCollection({ handleAddNewPlaylist, handleRemoveNewTrack, myPlay
     const handleRemoveSong = (playlistName, trackToRemove) => {
         handleRemoveSongFromSavedPlaylist(playlistName, trackToRemove);
     };
-    
+
     return (
-        <div>
-            <h1>Your Playlist collection</h1>
-            <input type="text"
-                name="name"
-                id="name"
-                value={playlistName}
-                onChange={handleChange}
-                placeholder="name your Playlist"
-                required />
-            <button onClick={handleSavePlaylist} >Save your playlist</button>
-            <Playlist mytracks={mytracks} handleRemoveNewTrack={handleRemoveNewTrack}/>
-            <div>
-                {myPlaylists.map((myPlaylist) => 
-                    <div>
-                        <p>{myPlaylist.name}</p>
-                        <button onClick={() => handleDelete(myPlaylist.name)}>Delete your playlist </button>
-                        {myPlaylist.songs.map((song) =>
-                            <Track track={song} onActionClick={() => handleRemoveSong(myPlaylist.name, song)} buttonLabel="-" />
-                        )}
-                        
+        <div className="playlist-collection">
+            <div className="playlist-card">
+                <input type="text"
+                    name="name"
+                    id="name"
+                    value={playlistName}
+                    onChange={handleChange}
+                    className="playlist-input"
+                    placeholder="name your Playlist"
+                    required />
+                <button onClick={handleSavePlaylist} className="save-playlist-button" >Save</button>
+            </div>
+            <Playlist mytracks={mytracks} handleRemoveNewTrack={handleRemoveNewTrack} />
+            <div className="saved-playlists">
+                {myPlaylists.map((myPlaylist) =>
+                    <div className="playlist-card">
+                        <div className="playlist-nameremove">
+                            <p className="playlist-name">{myPlaylist.name}</p>
+                            <button className="delete-button" onClick={() => handleDelete(myPlaylist.name)}> - </button>
+                        </div>
+                        <div className="playlist-track">
+                            {myPlaylist.songs.map((trackId) => {
+                                const mytrack = sampleTracks.find((e) => e.id === trackId)
+
+                                return <Track track={mytrack} onActionClick={() => handleRemoveSong(myPlaylist.name, mytrack)} buttonLabel="-" />
+
+                            }
+                            )}
+                        </div>
                     </div>
 
                 )}

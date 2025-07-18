@@ -1,0 +1,54 @@
+.track-card {
+    background-color: #ffe6f0;
+    border: 2px solid #ff99cc;
+    border-radius: 16px;
+    padding: 16px;
+    margin: 12px 0;
+    box-shadow: 0 4px 8px rgba(255, 153, 204, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.track-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+
+.track-title {
+    color: #ff3399;
+    font-size: 20px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.track-singer {
+    color: #cc6699;
+    font-size: 16px;
+    font-style: italic;
+    margin-top: 4px;
+}
+
+.track-button {
+    background-color: #ff66b2;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.track-button:hover {
+    background-color: #ff3385;
+}

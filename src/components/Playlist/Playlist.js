@@ -1,16 +1,18 @@
 import Track from "../Track/Track";
 import './Playlist.css'
+import { sampleTracks } from '../../App.js';
 function Playlist({ mytracks, handleRemoveNewTrack }) {
-    const handleRemove = (mytrack) => {
-        handleRemoveNewTrack(mytrack);
+    const handleRemove = (trackId) => {
+        handleRemoveNewTrack(trackId);
     }
     return (
-        <div className="Playlist">
-            <h1 className="Playlist-title" >My Playlist</h1>
-            {mytracks.map((mytrack) =>
-                <div key={mytrack.id} className="track-container">
+        <div className="playlist">
+            {mytracks.map((trackId) => {
+                const mytrack = sampleTracks.find((e)=> e.id === trackId)
+                return <div key={mytrack.id} className="track-container">
                     <Track track={mytrack} onActionClick={handleRemove} buttonLabel="-" />
                 </div>
+            }
             )}
         </div>
     );

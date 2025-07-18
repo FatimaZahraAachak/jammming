@@ -1,5 +1,43 @@
+
 .App {
+  font-family: 'Segoe UI', sans-serif;
   text-align: center;
-  font-family: Arial, sans-serif;
-  padding: 40px;
+  background-color: #fff0f5;
+  /* rose clair lavande */
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.App h1 {
+  font-size: 32px;
+  color: #d63384;
+  /* rose soutenu */
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px #f8d7da;
+}
+
+.App h2 {
+  font-size: 25px;
+  color: #e83e8c;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  /* Permet de s'adapter sur petits écrans */
+}
+
+.results-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.PlaylistCollection {
+  flex: 1;
+  min-width: 300px;
 }

@@ -1,0 +1,12 @@
+.search-results {
+    
+    padding: 0 20px;
+    max-width: 600px;
+    
+}
+
+.result-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: 1px dashed #ffb6c1;
+}
