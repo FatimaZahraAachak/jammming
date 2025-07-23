@@ -62,6 +62,17 @@ function App() {
     setPlayLists(updatedPlaylistsong);
   };
 
+  const handleSaveNewNamePlaylist = (newName,index) => {
+    const playlistToUpdate = myPlaylists[index];
+    const newPlaylistToUpdate = {
+      ...playlistToUpdate,
+      name: newName
+    }
+    const newPlaylists = [...myPlaylists];
+    newPlaylists[index] = newPlaylistToUpdate;
+    setPlayLists(newPlaylists);
+  }
+
 
 
   return (
@@ -75,7 +86,7 @@ function App() {
         </div>
         <div className='PlaylistCollection'>
           <h2 className="collection-title">Your Playlist Collection</h2>
-          <PlaylistCollection handleAddNewPlaylist={handleAddNewPlaylist} handleDeletPlaylist={handleDeletPlaylist} handleRemoveSongFromSavedPlaylist={handleRemoveSongFromSavedPlaylist} myPlaylists={myPlaylists} mytracks={myTracks} handleRemoveNewTrack={handleRemoveNewTrack} />
+          <PlaylistCollection handleAddNewPlaylist={handleAddNewPlaylist} handleDeletPlaylist={handleDeletPlaylist} handleRemoveSongFromSavedPlaylist={handleRemoveSongFromSavedPlaylist} myPlaylists={myPlaylists} mytracks={myTracks} handleRemoveNewTrack={handleRemoveNewTrack} handleSaveNewNamePlaylist={handleSaveNewNamePlaylist} />
         </div>
       </div>
     </div>

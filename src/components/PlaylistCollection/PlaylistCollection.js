@@ -2,9 +2,9 @@ import { useState } from "react";
 import Playlist from "../Playlist/Playlist";
 import Track from "../Track/Track";
 import './PlaylistCollection.css'
-import { sampleTracks } from '../../App.js';
+import SavedPlaylist from "./SavedPlaylist/SavedPlaylist.js";
 
-function PlaylistCollection({ handleAddNewPlaylist, handleRemoveNewTrack, myPlaylists, mytracks, handleDeletPlaylist, handleRemoveSongFromSavedPlaylist }) {
+function PlaylistCollection({ handleAddNewPlaylist, handleRemoveNewTrack, myPlaylists, mytracks, handleDeletPlaylist, handleRemoveSongFromSavedPlaylist, handleSaveNewNamePlaylist }) {
     const [playlistName, setPlaylistName] = useState("");
     const handleChange = (event) => {
         setPlaylistName(event.target.value);
@@ -35,22 +35,8 @@ function PlaylistCollection({ handleAddNewPlaylist, handleRemoveNewTrack, myPlay
             </div>
             <Playlist mytracks={mytracks} handleRemoveNewTrack={handleRemoveNewTrack} />
             <div className="saved-playlists">
-                {myPlaylists.map((myPlaylist) =>
-                    <div className="playlist-card">
-                        <div className="playlist-nameremove">
-                            <p className="playlist-name">{myPlaylist.name}</p>
-                            <button className="delete-button" onClick={() => handleDelete(myPlaylist.name)}> - </button>
-                        </div>
-                        <div className="playlist-track">
-                            {myPlaylist.songs.map((trackId) => {
-                                const mytrack = sampleTracks.find((e) => e.id === trackId)
-
-                                return <Track track={mytrack} onActionClick={() => handleRemoveSong(myPlaylist.name, mytrack)} buttonLabel="-" />
-
-                            }
-                            )}
-                        </div>
-                    </div>
+                {myPlaylists.map((myPlaylist, index) =>
+                    <SavedPlaylist myPlaylist={myPlaylist} handleDelete={handleDelete} handleRemoveSong={handleRemoveSong} handleSaveNewNamePlaylist={(newName) =>handleSaveNewNamePlaylist(newName,index)} />
 
                 )}
             </div>
