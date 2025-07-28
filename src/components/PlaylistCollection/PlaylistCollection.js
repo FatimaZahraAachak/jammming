@@ -4,7 +4,7 @@ import Track from "../Track/Track";
 import './PlaylistCollection.css'
 import SavedPlaylist from "./SavedPlaylist/SavedPlaylist.js";
 
-function PlaylistCollection({ handleAddNewPlaylist, handleRemoveNewTrack, myPlaylists, mytracks, handleDeletPlaylist, handleRemoveSongFromSavedPlaylist, handleSaveNewNamePlaylist }) {
+function PlaylistCollection({ handleAddNewPlaylist, handleRemoveNewTrack, myPlaylists, mytracks, handleDeletPlaylist, handleRemoveSongFromSavedPlaylist, handleSaveNewNamePlaylist, allTracks }) {
     const [playlistName, setPlaylistName] = useState("");
     const handleChange = (event) => {
         setPlaylistName(event.target.value);
@@ -33,10 +33,10 @@ function PlaylistCollection({ handleAddNewPlaylist, handleRemoveNewTrack, myPlay
                     required />
                 <button onClick={handleSavePlaylist} className="save-playlist-button" >Save</button>
             </div>
-            <Playlist mytracks={mytracks} handleRemoveNewTrack={handleRemoveNewTrack} />
+            <Playlist allTracks={allTracks} mytracks={mytracks} handleRemoveNewTrack={handleRemoveNewTrack} />
             <div className="saved-playlists">
                 {myPlaylists.map((myPlaylist, index) =>
-                    <SavedPlaylist myPlaylist={myPlaylist} handleDelete={handleDelete} handleRemoveSong={handleRemoveSong} handleSaveNewNamePlaylist={(newName) =>handleSaveNewNamePlaylist(newName,index)} />
+                    <SavedPlaylist allTracks={allTracks} myPlaylist={myPlaylist} handleDelete={handleDelete} handleRemoveSong={handleRemoveSong} handleSaveNewNamePlaylist={(newName) =>handleSaveNewNamePlaylist(newName,index)} />
 
                 )}
             </div>

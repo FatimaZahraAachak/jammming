@@ -1,0 +1,62 @@
+.playlist-button {
+    padding: 6px 14px;
+    font-size: 1rem;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #ffb6c1;
+    /* rose pastel */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    min-width: 60px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(255, 182, 193, 0.4);
+    /* petite ombre rose */
+}
+
+.playlist-button:hover {
+    background-color: #ff69b4;
+    /* rose plus soutenu */
+}
+.edit-input {
+    padding: 6px 10px;
+    font-size: 1rem;
+    font-family: 'Segoe UI', sans-serif;
+    border: 1px solid #ffb6c1;
+    border-radius: 6px;
+    outline: none;
+    background-color: #fff0f5;
+    /* lavande très clair */
+    color: #333;
+}
+.part-oneedit {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.part-twoedit {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.playlist-nameremove {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+.playlist-name {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.2rem;
+    /* plus grand pour ne pas paraître "petit" */
+    font-weight: 600;
+    /* un peu plus de présence */
+    color: #d63384;
+    /* un rose élégant qui reste lisible */
+    margin: 0;
+    padding: 4px 8px;
+}

@@ -1,34 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar.js';
 import SearchResults from './components/SearchResults/SearchResults.js';
 import Playlist from './components/Playlist/Playlist.js';
 import PlaylistCollection from './components/PlaylistCollection/PlaylistCollection.js';
-
-export const sampleTracks = [
-  { id: 1, title: "Blinding Lights", singer: "The Weeknd" },
-  { id: 2, title: "Levitating", singer: "Dua Lipa" },
-  { id: 3, title: "Shape of You", singer: "Ed Sheeran" },
-  { id: 4, title: "Good 4 U", singer: "Olivia Rodrigo" },
-  { id: 5, title: "Stay", singer: "The Kid LAROI & Justin Bieber" },
-  { id: 6, title: "Easy On Me", singer: "Adele" },
-  { id: 7, title: "Peaches", singer: "Justin Bieber" },
-  { id: 8, title: "As It Was", singer: "Harry Styles" },
-  { id: 9, title: "Flowers", singer: "Miley Cyrus" },
-  { id: 10, title: "Bad Habit", singer: "Steve Lacy" }
-];
+import  { searchTrackByTitle } from './api/Spotify.js';
 
 
 function App() {
   const [filtredTracks, setFiltredTracks] = useState([]);
   const [myTracks, setMyTracks] = useState([]);
   const [myPlaylists, setPlayLists] = useState([]);
-
-  const handleSearchSubmit = (text) => {
-    const results = sampleTracks.filter((item) => item.title.toLowerCase().includes(text.toLowerCase()));
-    setFiltredTracks(results);
+  const [allTracks, setAllTracks]=useState([])
+  const handleSearchSubmit = async (text) => {
+    const results = await searchTrackByTitle(text); 
+    setAllTracks([...allTracks, ...results])
+    setFiltredTracks(results); 
   };
-
+  
   const handleAddNewTrack = (trackId) => {
     const hasTrack = myTracks.some((e) => e === trackId);
     if (hasTrack) {
@@ -62,7 +51,7 @@ function App() {
     setPlayLists(updatedPlaylistsong);
   };
 
-  const handleSaveNewNamePlaylist = (newName,index) => {
+  const handleSaveNewNamePlaylist = (newName, index) => {
     const playlistToUpdate = myPlaylists[index];
     const newPlaylistToUpdate = {
       ...playlistToUpdate,
@@ -86,7 +75,7 @@ function App() {
         </div>
         <div className='PlaylistCollection'>
           <h2 className="collection-title">Your Playlist Collection</h2>
-          <PlaylistCollection handleAddNewPlaylist={handleAddNewPlaylist} handleDeletPlaylist={handleDeletPlaylist} handleRemoveSongFromSavedPlaylist={handleRemoveSongFromSavedPlaylist} myPlaylists={myPlaylists} mytracks={myTracks} handleRemoveNewTrack={handleRemoveNewTrack} handleSaveNewNamePlaylist={handleSaveNewNamePlaylist} />
+          <PlaylistCollection allTracks={allTracks} handleAddNewPlaylist={handleAddNewPlaylist} handleDeletPlaylist={handleDeletPlaylist} handleRemoveSongFromSavedPlaylist={handleRemoveSongFromSavedPlaylist} myPlaylists={myPlaylists} mytracks={myTracks} handleRemoveNewTrack={handleRemoveNewTrack} handleSaveNewNamePlaylist={handleSaveNewNamePlaylist} />
         </div>
       </div>
     </div>
